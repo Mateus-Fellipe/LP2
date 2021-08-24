@@ -12,11 +12,20 @@ public class RectApp {
 class Rect{ // Classe
      private int x, y;
      private int w, h;
-     Rect (int x, int y, int w, int h) {
-         this.x = x;
+     private int rP, gP, bP;
+     private int rD, gD, bD;
+     Rect (int x, int y, int w, int h,
+     int rP, int gP, int bP, int rD, int gD, int bD) {
+         this.x = x; //Propriedades
          this.y = y;
          this.w = w;
          this.h = h;
+         this.rP = rP;
+         this.gP = gP;
+         this.bP = bP;
+         this.rD = rD;
+         this.gD = gD;
+         this.bD = bD;
      }
 
      void print () { // Método
@@ -26,27 +35,27 @@ class Rect{ // Classe
 
     int area(){
       return this.w * this.h;
-    }
+    } // Método
 
     void drag(int dx, int dy){
       this.x = x + dx;
       this.y = y + dy;
-    }
+    } // Método
 
-    public void paint (Graphics g){
-      //super.paint(g);
+    public void paint (Graphics g){ // Método
       Graphics2D g2d = (Graphics2D) g;
 
+      g2d.setColor(new Color(this.rP, this.gP, this.bP));
       g2d.fillRect(this.x, this.y, this.w, this.h);
 
-      g2d.setColor(Color.red);
+      g2d.setColor(new Color(this.rD, this.gD, this.bD));
       g2d.drawRect(this.x, this.y, this.w, this.h);
     }
 }
 
 
 class Figure2DFrame extends JFrame {
-    Rect r1, r2, r3;
+    Rect r1, r2, r3; // objetos
     public Figure2DFrame () {
         this.addWindowListener (
             new WindowAdapter() {
@@ -56,20 +65,28 @@ class Figure2DFrame extends JFrame {
             }
         );
         this.setTitle("Java2D - Retângulos");
-        this.setSize(350, 350);
-        this.r1 = new Rect(50, 50, 100, 75);
-        this.r2 = new Rect(100, 100, 55, 75);
-        this.r3 = new Rect(175, 125, 75, 120);
+        this.setSize(350, 500);
+        this.r1 = new Rect(125, 50, 100, 100,
+        255, 0, 0,   //Preenchimento
+        255, 153, 0 // Borda
+        );
+
+        this.r2 = new Rect(125, 200, 100, 100,
+        255, 255, 0, // Preenchimento
+        252, 227, 2 // Borda
+        );
+
+        this.r3 = new Rect(125, 350, 100, 100,
+        0, 255, 0,  //Preenchimento
+        0, 255, 85 // Borda
+        );
     }
 
     public void paint(Graphics g){
+      getContentPane().setBackground(Color.black);
       super.paint(g);
       this.r1.paint(g);
-      g.setColor(new Color(114, 225, 232));
       this.r2.paint(g);
-      g.setColor(Color.pink);
       this.r3.paint(g);
     }
-
-
 }
