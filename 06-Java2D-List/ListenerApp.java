@@ -1,9 +1,3 @@
-/*
-O que fazer?
-Montar um programa principal que desenhe retangulos se pressionado r, elipses se precinado e,
-triangulos se precionado t e um dado texto se precionado s.
-*/
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
