@@ -52,22 +52,26 @@ class FrameApp extends JFrame{
                       figs.add(new Triangle(x, y, w, h, r, g, b, 0, 0, 0));
                     }else if (press.getKeyChar() == 'l'){ // add Line
                       figs.add(new Line(x, y, w, h, r, g, b));
-                    }else if (press.getKeyChar() == 'f'){ // remove figure
-                      figs.remove(focus);
-                    }else if (press.getKeyChar() == 'c'){ // clean
-                      figs.removeAll(figs);
-                    } else if (press.getKeyChar() == 'a'){ // arrow left
-                      focus.drag(28);
-                      select = new Select(focus.x, focus.y, focus.w, focus.h);
-                    } else if (press.getKeyChar() == 'd'){ // arrow right
-                      focus.drag(29);
-                      select = new Select(focus.x, focus.y, focus.w, focus.h);
-                    } else if (press.getKeyChar() == 'w'){ // arrow up
-                      focus.drag(30);
-                      select = new Select(focus.x, focus.y, focus.w, focus.h);
-                    } else if (press.getKeyChar() == 's'){ // arrow down
-                      focus.drag(31);
-                      select = new Select(focus.x, focus.y, focus.w, focus.h);
+                    }
+
+                    if(focus != null){
+                        if (press.getKeyChar() == 'f'){ // remove figure
+                          figs.remove(focus);
+                        }else if (press.getKeyChar() == 'c'){ // clean
+                          figs.removeAll(figs);
+                        } else if (press.getKeyChar() == 'a'){ // arrow left
+                          focus.drag(28);
+                          select = new Select(focus.x, focus.y, focus.w, focus.h);
+                        } else if (press.getKeyChar() == 'd'){ // arrow right
+                          focus.drag(29);
+                          select = new Select(focus.x, focus.y, focus.w, focus.h);
+                        } else if (press.getKeyChar() == 'w'){ // arrow up
+                          focus.drag(30);
+                          select = new Select(focus.x, focus.y, focus.w, focus.h);
+                        } else if (press.getKeyChar() == 's'){ // arrow down
+                          focus.drag(31);
+                          select = new Select(focus.x, focus.y, focus.w, focus.h);
+                        }
                     }
 
                     repaint();
