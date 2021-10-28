@@ -1,4 +1,4 @@
-Funções:
+Funções: </d>
   tecla "r" - Cria retangulo.
   tecla "e" - Cria elipse.
   tecla "t" - Cria triangulo.
