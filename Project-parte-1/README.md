@@ -1,12 +1,19 @@
-<h1>Funções:</h1>
-  tecla "r" - Cria retangulo.
-  </d>tecla "e" - Cria elipse.
-  tecla "t" - Cria triangulo.
-  tecla "l" - Cria linha.
-  tecla "f" - Remove o objeto em foco.
-  tecla "c" - Limpa a tela.
+<h1>
+  Instruções:
+</h1>
+<h2>
+  Criação e exclusão
+</h2>
+  * **tecla _r_** - Cria retangulo.
+  * **tecla _e_** - Cria elipse.
+  * **tecla _t_** - Cria triangulo.
+  * **tecla _l_** - Cria linha.
+  * **tecla _f_** - Remove o objeto em foco.
+  * **tecla _c_** - Limpa a tela.
   
-  Teclas de movimento:
+<h2>
+   Teclas de movimento:
+</h2>
     tecla "w" - move para cima.
     tecla "s" - move para baixo.
     tecla "a" - move para direita.
