@@ -1,6 +1,6 @@
-Funções: </d>
+Funções: 
   tecla "r" - Cria retangulo.
-  tecla "e" - Cria elipse.
+  </d>tecla "e" - Cria elipse.
   tecla "t" - Cria triangulo.
   tecla "l" - Cria linha.
   tecla "f" - Remove o objeto em foco.
