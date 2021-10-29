@@ -2,7 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Random;
+import java.awt.Component;
 import java.util.ArrayList;
+import java.awt.event.KeyEvent;
 
 import Figures.*;
 
@@ -19,7 +21,7 @@ class FrameApp extends JFrame{
     Random rand = new Random(); // Random
     Figure focus = null;
     Figure select = new Select(0,0,0,0);
-    int pX, pY;
+    int posX, posY;
 
     public FrameApp(){
         this.addWindowListener( // Listener de janela, feito para ouvir certo ações para as janelas.
@@ -33,59 +35,40 @@ class FrameApp extends JFrame{
         this.addKeyListener( // Listener de Teclado, feito para ouvir o teclado.
             new KeyAdapter(){
                 public void keyPressed(KeyEvent press){
-                    Point posMouse = getMousePosition();
+                    Point PosMouse = getMousePosition();
+                    int x = PosMouse.x;
+                    int y = PosMouse.y;
+                    int w = rand.nextInt(150);
+                    int h = rand.nextInt(150);
+                    int r = rand.nextInt(255);
+                    int g = rand.nextInt(255);
+                    int b = rand.nextInt(255);
+                    select = new Select(0,0,0,0);
 
-                    if((posMouse.x >= 0 && posMouse.x <= 500) && (posMouse.y >= 0 && posMouse.y <= 500)){
-                        int x = posMouse.x;
-                        int y = posMouse.y;
-                        int w = rand.nextInt(150);
-                        int h = rand.nextInt(150);
-                        int r = rand.nextInt(255);
-                        int g = rand.nextInt(255);
-                        int b = rand.nextInt(255);
-                        select = new Select(0,0,0,0);
-
-                        switch(press.getKeyChar()){ // Entrada do teclado
-                            case ('r'): // add rectangle
-                              figs.add(new Rect(x, y, w, h, r, g, b, 0, 0, 0));
-                              break;
-                            case ('e'): // add elipse
-                              figs.add(new Ellipese(x, y, w, h, r, g, b, 0, 0, 0));
-                              break;
-                            case ('t'): // add triangle
-                              figs.add(new Triangle(x, y, w, h, r, g, b, 0, 0, 0));
-                              break;
-                            case ('l'): // add Line
-                              figs.add(new Line(x, y, w, h, r, g, b));
-                              break;
-                        }
-
-                        if(focus != null){
-                            switch(press.getKeyChar()){
-                                case ('f'): // remove figure
-                                    figs.remove(focus);
-                                    break;
-                                case ('c'): // clean
-                                    figs.removeAll(figs);
-                                    break;
-                                case ('a'): // arrow left
-                                    focus.drag(28);
-                                    select = new Select(focus.x, focus.y, focus.w, focus.h);
-                                    break;
-                                case ('d'): // arrow right
-                                    focus.drag(29);
-                                    select = new Select(focus.x, focus.y, focus.w, focus.h);
-                                    break;
-                                case ('w'): // arrow up
-                                    focus.drag(30);
-                                    select = new Select(focus.x, focus.y, focus.w, focus.h);
-                                    break;
-                                case ('s'): // arrow down
-                                    focus.drag(31);
-                                    select = new Select(focus.x, focus.y, focus.w, focus.h);
-                                    break;
-                            }
-                        }
+                    if (press.getKeyChar() == 'r'){ // add rectangle
+                      figs.add(new Rect(x, y, w, h, r, g, b, 0, 0, 0));
+                    }else if (press.getKeyChar() == 'e'){ // add elipse
+                      figs.add(new Ellipese(x, y, w, h, r, g, b, 0, 0, 0));
+                    }else if (press.getKeyChar() == 't'){ // add triangle
+                      figs.add(new Triangle(x, y, w, h, r, g, b, 0, 0, 0));
+                    }else if (press.getKeyChar() == 'l'){ // add Line
+                      figs.add(new Line(x, y, w, h, r, g, b));
+                    }else if (press.getKeyChar() == 'f'){ // remove figure
+                      figs.remove(focus);
+                    }else if (press.getKeyChar() == 'c'){ // clean
+                      figs.removeAll(figs);
+                    } else if (press.getKeyChar() == 'a'){ // arrow left
+                      focus.drag(28);
+                      select = new Select(focus.x, focus.y, focus.w, focus.h);
+                    } else if (press.getKeyChar() == 'd'){ // arrow right
+                      focus.drag(29);
+                      select = new Select(focus.x, focus.y, focus.w, focus.h);
+                    } else if (press.getKeyChar() == 'w'){ // arrow up
+                      focus.drag(30);
+                      select = new Select(focus.x, focus.y, focus.w, focus.h);
+                    } else if (press.getKeyChar() == 's'){ // arrow down
+                      focus.drag(31);
+                      select = new Select(focus.x, focus.y, focus.w, focus.h);
                     }
 
                     repaint();
@@ -98,19 +81,20 @@ class FrameApp extends JFrame{
                 public void mousePressed(MouseEvent press){
                     focus = null;
                     select = new Select(0,0,0,0);
+
+                    int pX = press.getX();
+                    int pY = press.getY();
                     for (Figure fig: figs){
-                        int pX = press.getX();
-                        int pY = press.getY();
-                        if ((pX >= fig.x && pX <= (fig.x + fig.w)) && ((pY >= fig.y && pY <= (fig.y + fig.h)))) {
+                        if (fig.clicked(pX, pY)) {
                           focus = fig;
+                          posX = pX - focus.x;
+                          posY = pY - focus.y;
                         }
                     }
                     if(focus != null){
                       select = new Select(focus.x, focus.y, focus.w, focus.h);
                       figs.add(focus);
                       figs.remove(focus);
-                      pX = press.getX() - focus.x;
-                      pY = press.getY() - focus.y;
                     }
                     repaint();
                 }
@@ -120,15 +104,15 @@ class FrameApp extends JFrame{
         this.addMouseMotionListener(
           new MouseMotionAdapter(){
             public void mouseDragged(MouseEvent evt){
-
+              int pX = evt.getX(), pY = evt.getY();
               if(focus != null){
-                  focus.x = evt.getX() - pX;
-                  focus.y = evt.getY() - pY;
+                  focus.x = pX - posX; // Posição do x da figure. pX é a posição do mouse.
+                  focus.y = pY - posY;
                   select = new Select(0,0,0,0);
                   focus.newPos();
                   repaint();
-              } else {;}
-              select = new Select(focus.x, focus.y, focus.w, focus.h);
+                  select = new Select(focus.x, focus.y, focus.w, focus.h);
+              }else{;}
             }
           }
         );
