@@ -5,20 +5,22 @@
   Criação e exclusão
 </h2>
 
-<p>
-  **tecla _r_** - Cria retangulo.
-  **tecla _e_** - Cria elipse.
-  **tecla _t_** - Cria triangulo.
-  **tecla _l_** - Cria linha.
-  **tecla _f_** - Remove o objeto em foco.
-  **tecla _c_** - Limpa a tela.
-</p>  
+  * **tecla r** - _Cria retangulo._
+  * **tecla e** - _Cria elipse._
+  * **tecla t** - _Cria triangulo._
+  * **tecla l** - _Cria linha._
+  * **tecla f** - _Remove o objeto em foco._
+  * **tecla c** - _Limpa a tela._
+  
 <h2>
    Teclas de movimento:
 </h2>
-    tecla "w" - move para cima.
-    tecla "s" - move para baixo.
-    tecla "a" - move para direita.
-    tecla "d" - move para esquerda.
+
+   * **tecla w** - _move para cima._
+   * **tecla s** - _move para baixo._
+   * **tecla a** - _move para direita._
+   * **tecla d** - _move para esquerda._
   
+<h3>
   Use o mouse para mover os objetos.
+</h3>
