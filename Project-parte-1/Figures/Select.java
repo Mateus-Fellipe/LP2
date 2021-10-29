@@ -13,7 +13,6 @@ public class Select extends Figure{
 
      }
 
-
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.red);
@@ -21,5 +20,8 @@ public class Select extends Figure{
     }
 
     public void drag(int dir){}
+
+    public boolean clicked(int pX, int pY){return false;}
+
     public void newPos(){}
 }

@@ -31,6 +31,11 @@ public class Line extends Figure{
   }
 
   public void drag(int dir){}
+
+  public boolean clicked(int pX, int pY){
+    return ((pX >= this.x && pX <= (this.x + this.w)) && (pY >= this.y && pY <= (this.y + this.h)));
+  }
+
   public void newPos(){
     this.x1 = x;
     this.y1 = y;

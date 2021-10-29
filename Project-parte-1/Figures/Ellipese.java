@@ -44,5 +44,9 @@ public class Ellipese extends Figure{
     g2d.draw(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
   }
 
+  public boolean clicked(int pX, int pY){
+    return ((pX >= this.x && pX <= (this.x + this.w)) && (pY >= this.y && pY <= (this.y + this.h)));
+  }
+
   public void newPos(){}
 }
