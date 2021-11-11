@@ -4,7 +4,7 @@ Classe abstrata(arCondicionado):
   b - Os ares-condicionados mesmo sendo objetos distintos compartilham das mesmas funções
   então podem ser definidos no mesmo grupo.
   c - O código esta logo abaixo.
-  d - class arSplitSala{}, class arParedeQuarto1{}, class arParedeQuarto2{}, class arSplitEscritorio{}
+  d - class split{}, class springer{}, class climatizador{}, class VRF{}
 */
 public class arCondicionado{
   public int temp;
