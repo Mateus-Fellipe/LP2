@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.util.*;
 
 public class Triangle extends Figure{
-    public int x1, x2, x3, y1, y2, y3;
-    public int lX [], lY[];
+    private int x1, x2, x3, y1, y2, y3;
+    private int lX [], lY[];
     private Polygon poligono;
 
     public Triangle(int x, int y, int w, int h,
