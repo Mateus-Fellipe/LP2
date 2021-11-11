@@ -17,11 +17,11 @@ public class indexApp{
 }
 
 class FrameApp extends JFrame{
-    ArrayList<Figure> figs = new ArrayList<Figure>(); // Lista homogenia de elementos. Nela estão contidas as figuras
-    Random rand = new Random(); // Random
-    Figure focus = null;
-    Figure select = new Select(0,0,0,0);
-    int posX, posY;
+    private ArrayList<Figure> figs = new ArrayList<Figure>(); // Lista homogenia de elementos. Nela estão contidas as figuras
+    private Random rand = new Random(); // Random
+    private Figure focus = null;
+    private Figure select = new Select(0,0,0,0);
+    private int posX, posY;
 
     public FrameApp(){
         this.addWindowListener( // Listener de janela, feito para ouvir certo ações para as janelas.
