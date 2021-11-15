@@ -6,7 +6,8 @@ import java.awt.geom.Ellipse2D.Double;
 
 
 public class Ellipese extends Figure{
-
+  private Ellipse2D polygon;
+  
   public Ellipese (int x, int y, int w, int h,
   int rF, int gF, int bF,
   int rC, int gC, int bC){
@@ -20,22 +21,17 @@ public class Ellipese extends Figure{
     this.rC = rC;
     this.gC = gC;
     this.bC = bC;
+    
+    this.polygon = new Ellipse2D.Double(this.x, this.y, this.w, this.h);
     }
 
-  public void drag(int dir){
-    if (dir == 28){
-        this.x = this.x - 2;
-      } else if (dir == 29){
-        this.x = this.x + 2;
-      } else if (dir == 30){
-        this.y = this.y - 2;
-      } else{
-        this.y = this.y + 2;
-      }
-  }
-
-  public void paint(Graphics g){
+  public void paint(Graphics g, boolean selected){
     Graphics2D g2d = (Graphics2D) g;
+
+    if (selected){
+        g2d.setColor(Color.red);
+        g2d.draw(new Ellipse2D.Double(this.x - 1, this.y - 1, this.w + 2, this.h + 2));
+    }
 
     g2d.setColor(new Color(this.rF, this. gF, this.bF));
     g2d.fill(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
@@ -45,8 +41,15 @@ public class Ellipese extends Figure{
   }
 
   public boolean clicked(int pX, int pY){
-    return ((pX >= this.x && pX <= (this.x + this.w)) && (pY >= this.y && pY <= (this.y + this.h)));
-  }
+    if (this.polygon.contains(pX, pY)){    
+                return true;
+        } else { return false; }
+    }
 
-  public void newPos(){}
+  public void newPos(){
+    this.x = x;
+    this.y = y;
+
+    this.polygon = new Ellipse2D.Double(this.x, this.y, this.w, this.h);
+  }
 }
