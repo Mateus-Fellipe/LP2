@@ -23,14 +23,17 @@ public class Line extends Figure{
     this.bC = bC;
   }
 
-  public void paint(Graphics g){
+  public void paint(Graphics g, boolean selected){
     Graphics2D g2d = (Graphics2D) g;
 
+    if(selected){
+        g2d.setColor(Color.RED);
+        g2d.drawRect(this.x, this.y, this.w, this.h);
+    }
+    
     g2d.setColor(new Color(this.rC, this.gC, this.bC));
     g2d.drawLine(this.x1, this.y1, this.x2, this.y2);
   }
-
-  public void drag(int dir){}
 
   public boolean clicked(int pX, int pY){
     return ((pX >= this.x && pX <= (this.x + this.w)) && (pY >= this.y && pY <= (this.y + this.h)));
