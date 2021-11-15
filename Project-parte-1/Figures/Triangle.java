@@ -6,8 +6,8 @@ import java.util.*;
 
 public class Triangle extends Figure{
     private int x1, x2, x3, y1, y2, y3;
-    private int lX [], lY[];
-    private Polygon poligono;
+    private int lX [], lY[], listXSelected [], listYSelected [];
+    private Polygon poligono, polygonSelected;
 
     public Triangle(int x, int y, int w, int h,
     int rF, int gF, int bF,
@@ -39,13 +39,23 @@ public class Triangle extends Figure{
         this.lY = listY;
 
         this.poligono = new Polygon(this.lX, this.lY, 3);
+        
+        int [] xSelected = {x1-1, x2, x3+1};
+        int [] ySelected = {y1+1, y2-1, y3+1};
+        this.listXSelected = xSelected;
+        this.listYSelected = ySelected;
+
+        this.polygonSelected = new Polygon(this.listXSelected, this.listYSelected, 3);
     }
 
-    public void paint(Graphics g){
-        int[] x = {this.x1, this.x2, this.x3};
-        int[] y = {this.y1, this.y2, this.y3};
+    public void paint(Graphics g, boolean selected){
         Graphics2D g2d = (Graphics2D) g;
-
+        
+        if(selected){
+            g2d.setColor(Color.RED);                    
+            g2d.drawPolygon(polygonSelected);
+        }
+        
         g2d.setColor(new Color(this.rF, this.gF, this.bF));
         g2d.fillPolygon(poligono);
 
@@ -53,20 +63,10 @@ public class Triangle extends Figure{
         g2d.drawPolygon(poligono);
       }
 
-    public void drag(int dir){
-        if (dir == 28){
-          this.x = this.x - 2;
-        } else if (dir == 29){
-          this.x = this.x + 2;
-        } else if (dir == 30){
-          this.y = this.y - 2;
-        } else{
-          this.y = this.y + 2;
-        }
-    }
-
     public boolean clicked(int pX, int pY){
-      return ((pX >= this.x && pX <= (this.x + this.w)) && (pY >= this.y && pY <= (this.y + this.h)));
+      if (this.poligono.contains(pX, pY)){
+            return true;    
+        } else {return false;}
     }
 
     public void newPos(){
@@ -85,5 +85,12 @@ public class Triangle extends Figure{
         this.lY = listY;
 
         this.poligono = new Polygon(this.lX, this.lY, 3);
+        
+        int [] xSelected = {x1-1, x2, x3+1};
+        int [] ySelected = {y1+1, y2-1, y3+1};
+        this.listXSelected = xSelected;
+        this.listYSelected = ySelected;
+
+        this.polygonSelected = new Polygon(this.listXSelected, this.listYSelected, 3);
     }
 }
