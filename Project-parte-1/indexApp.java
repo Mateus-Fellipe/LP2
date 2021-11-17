@@ -132,8 +132,8 @@ class FrameApp extends JFrame{
                     for (Figure fig: figs){
                         if (fig.clicked(pX, pY)) {
                           focusFig = fig;
-                          posX = pX - focusFig.x;
-                          posY = pY - focusFig.y;
+                          posX = pX - focusFig.getterX();
+                          posY = pY - focusFig.getterY();
                         }
                     }
                     if(focus != null){
@@ -186,8 +186,8 @@ class FrameApp extends JFrame{
             public void mouseDragged(MouseEvent evt){
               int pX = evt.getX(), pY = evt.getY();
               if(focusFig != null){
-                  focusFig.x = pX - posX; // Posição do x da figure. pX é a posição do mouse.
-                  focusFig.y = pY - posY;
+                  focusFig.setterX(pX - posX); // Posição do x da figure. pX é a posição do mouse.
+                  focusFig.setterY(pY - posY);
                   focusFig.newPos();
                   repaint();
               }else{;}
