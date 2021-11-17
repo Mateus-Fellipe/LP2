@@ -23,7 +23,7 @@ class FrameApp extends JFrame{
     private ArrayList<buttons> butts = new ArrayList<buttons>() {{
     add(new buttons(0, new Rect(15, 45, 20, 20, 0,0,0,0,0,0)));
     add(new buttons(1, new Ellipese(15, 90, 20, 20, 0,0,0,0,0,0)));
-    add(new buttons(2, new Triangle(15, 135, 20, 20, 0,0,0,0,0,0)));
+    add(new buttons(2, new Triangle(10, 125, 35, 35, 0,0,0,0,0,0)));
     add(new buttons(3, new Line(15, 180, 20, 20, 0,0,0)));
     }}; 
     
