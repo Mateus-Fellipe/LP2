@@ -14,10 +14,10 @@ public class buttons implements IVisible{
         this.posY = index*45 + 30; // Posiçao vertical dos botões. Começando a partir de 30px.
     
         this.fig = fig;
-        this.fig.x = 10; // Posição horizontal das figuras dentro dos botões. Com 5px de margem
-        this.fig.y = index*45 + 35; // Posição vertical das figuras dentro dos botões. Começando a partir de 35px e com 5 px de margem.
-        this.fig.w = 35; // Largura da figura.
-        this.fig.h = 35; // Altura da figura.
+        this.fig.setterX(10); // Posição horizontal das figuras dentro dos botões. Com 5px de margem
+        this.fig.setterY(index*45 + 35); // Posição vertical das figuras dentro dos botões. Começando a partir de 35px e com 5 px de margem.
+        this.fig.setterW(35); // Largura da figura.
+        this.fig.setterH(35); // Altura da figura.
     }
 
     public void paint(Graphics g, boolean selected){
