@@ -97,17 +97,17 @@ class FrameApp extends JFrame{
                       index = figs.size();
                       focusFig = figs.get(index - 1);
                     }else if (press.getKeyChar() == 'f'){ // remove figure
-                      figs.remove(focus);
+                      figs.remove(focusFig);
                     }else if (press.getKeyChar() == 'c'){ // clean
                       figs.removeAll(figs);
                     } else if (press.getKeyChar() == 'a'){ // arrow left
-                      focus.drag(28);
+                      focusFig.drag(28);
                     } else if (press.getKeyChar() == 'd'){ // arrow right
-                      focus.drag(29);
+                      focusFig.drag(29);
                     } else if (press.getKeyChar() == 'w'){ // arrow up
-                      focus.drag(30);
+                      focusFig.drag(30);
                     } else if (press.getKeyChar() == 's'){ // arrow down
-                      focus.drag(31);
+                      focusFig.drag(31);
                     }
 
                     repaint();
@@ -136,7 +136,7 @@ class FrameApp extends JFrame{
                           posY = pY - focusFig.getterY();
                         }
                     }
-                    if(focus != null){
+                    if(focusFig != null){
                       figs.add(focusFig);
                       figs.remove(focusFig);
                     }
